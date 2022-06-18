@@ -1,19 +1,21 @@
 <template>
     <div id="app">
-        <p>wonendie</p>
+        <TabbarVue></TabbarVue>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-
+import TabbarVue from './components/Tabbar.vue'
 
 export default {
     name: 'App',
     components: {
-
+        TabbarVue
     }
 }
 </script>
 
-<style>
+<style lang="less" scoped>
+
 </style>
