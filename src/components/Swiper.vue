@@ -1,6 +1,7 @@
 <template>
     <div>
         <van-swipe class="my-swipe" :autoplay="2000" indicator-color="white">
+
             <van-swipe-item v-for="item in banner" :key="item.id">
                 <img :src="item.image_url" alt="">
             </van-swipe-item>
@@ -28,14 +29,8 @@ export default {
 
 <style lang="less" scoped>
 .my-swipe .van-swipe-item {
-    color: #fff;
-    font-size: 20px;
-    line-height: 150px;
-    text-align: center;
-    background-color: #39a9ed;
-    img{
+    img {
         width: 100%;
     }
 }
-
 </style>

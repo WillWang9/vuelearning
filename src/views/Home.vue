@@ -7,6 +7,7 @@
         <NewRelease :newgoods="newGoodsData"></NewRelease>
         <Recommend :hotgoods="hotGoodsData"></Recommend>
         <TopicChosen :topic="topicData"></TopicChosen>
+        <CategoryList :cate="CategoryListData"></CategoryList>
     </div>
 </template>
 
@@ -19,7 +20,7 @@ import Brand from '@/components/Brand.vue'
 import NewRelease from '@/components/NewRelease.vue';
 import Recommend from '@/components/Recommend.vue';
 import TopicChosen from '@/components/TopicChosen.vue';
-
+import CategoryList from '@/components/CategoryList.vue';
 
 export default {
     name: "Home",
@@ -31,8 +32,8 @@ export default {
             brandData: [],
             newGoodsData: [],
             hotGoodsData: [],
-            topicData: []
-
+            topicData: [],
+            CategoryListData: []
         };
     },
     components: {
@@ -41,26 +42,25 @@ export default {
         Brand,
         NewRelease,
         Recommend,
-        TopicChosen
+        TopicChosen,
+        CategoryList
     },
     created() {
         getHomeData().then((res) => {
-            console.log(res.data.data);
+            // console.log(res.data.data);
             this.bannerData = res.data.data.banner
             this.channelData = res.data.data.channel
             this.brandData = res.data.data.brandList
             this.newGoodsData = res.data.data.newGoodsList
             this.hotGoodsData = res.data.data.hotGoodsList
             this.topicData = res.data.data.topicList
+            this.CategoryListData = res.data.data.categoryList
         })
     },
 };
 </script>
 
 <style scoped>
-#root {
-    padding-bottom: 50px;
-}
 </style>
 
 <style>

@@ -1,20 +1,22 @@
 <template>
     <div>
-        <h3 class="title">周一周四·新品首发</h3>
-        <ul id="newgoods">
-            <li v-for="item in newgoods" :key="item.id">
-                <img :src="item.list_pic_url" alt="">
-                <div>{{ item.name }}</div>
-                <p>{{ item.retail_price | formatPrice }}</p>
-            </li>
-        </ul>
+        <div v-for="item in cate" :key="item.id">
+            <h3 class="title">{{ item.name }}</h3>
+            <ul id="catagoods">
+                <li v-for="items in item.goodsList" :key="items.id">
+                    <img v-lazy="items.list_pic_url" alt="">
+                    <div>{{ items.name }}</div>
+                    <p>{{ items.retail_price | formatPrice }}</p>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: "NewRelease",
-    props: ['newgoods'],
+    name: "CatgoryList",
+    props: ['cate'],
     data() {
         return {
 
@@ -27,7 +29,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#newgoods{
+#catagoods {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -35,15 +37,18 @@ export default {
     text-align: center;
     line-height: 24px;
     word-spacing: -4px;
-    li{
+
+    li {
         padding-bottom: 10px;
         margin-bottom: 10px;
         width: 49%;
         font-size: 16px;
-        img{
+
+        img {
             width: 100%;
         }
-        p{
+
+        p {
             margin-top: 5px;
             color: #8B0000;
         }

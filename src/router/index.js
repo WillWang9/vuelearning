@@ -5,7 +5,7 @@ Vue.use(VueRouter);
 
 //引入页面组件
 import Home from "@/views/Home";
-import Catagory from "@/views/Catagory";
+import Category from "@/views/Category";
 import Cart from "@/views/Cart";
 import Topic from "@/views/Topic";
 import User from "@/views/User";
@@ -23,9 +23,9 @@ const routes = [
         name: 'home'
     },
     {
-        path: '/catagory',
-        component: Catagory,
-        name: 'catagory'
+        path: '/category',
+        component: Category,
+        name: 'category'
     },
     {
         path: '/cart',

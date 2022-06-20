@@ -1,7 +1,7 @@
 <template>
     <div id="app">
-        <TabbarVue></TabbarVue>
         <router-view></router-view>
+        <TabbarVue></TabbarVue>
     </div>
 </template>
 
@@ -17,5 +17,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
 </style>
