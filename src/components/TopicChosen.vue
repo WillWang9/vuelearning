@@ -1,9 +1,18 @@
 <template>
     <div class="chosen">
         <h3 class="title">专题精选</h3>
-        <van-swipe :loop="false" class="my-swipe" :width="300" :show-indicators="false">
-            <van-swipe-item v-for="item in topic" :key="item.id">
-                <img :src="item.scene_pic_url" alt="">
+        <van-swipe
+            :loop="false"
+            class="my-swipe"
+            :width="300"
+            :show-indicators="false"
+        >
+            <van-swipe-item
+                v-for="item in topic"
+                :key="item.id"
+                @click="goTopic"
+            >
+                <img :src="item.scene_pic_url" alt="" />
                 <h2>
                     {{ item.title }}
                     <span>
@@ -14,7 +23,6 @@
                     {{ item.subtitle }}
                 </p>
             </van-swipe-item>
-
         </van-swipe>
     </div>
 </template>
@@ -22,14 +30,14 @@
 <script>
 export default {
     name: "TopicChosen",
-    props: ['topic'],
+    props: ["topic"],
     data() {
-        return {
-
-        };
+        return {};
     },
-    components: {
-
+    methods: {
+        goTopic() {
+            this.$router.push('/Topic')
+        },
     },
 };
 </script>
@@ -39,7 +47,6 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
     padding-left: 8px;
-    ;
     padding-right: 8px;
 }
 
@@ -58,7 +65,7 @@ export default {
         line-height: 40px;
 
         span {
-            color: #8B0000;
+            color: #8b0000;
         }
     }
 
@@ -68,6 +75,5 @@ export default {
         white-space: nowrap;
         width: 90%;
     }
-
 }
 </style>

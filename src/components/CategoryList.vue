@@ -3,8 +3,12 @@
         <div v-for="item in cate" :key="item.id">
             <h3 class="title">{{ item.name }}</h3>
             <ul id="catagoods">
-                <li v-for="items in item.goodsList" :key="items.id">
-                    <img v-lazy="items.list_pic_url" alt="">
+                <li
+                    v-for="items in item.goodsList"
+                    :key="items.id"
+                    @click="detail(items)"
+                >
+                    <img v-lazy="items.list_pic_url" alt="" />
                     <div>{{ items.name }}</div>
                     <p>{{ items.retail_price | formatPrice }}</p>
                 </li>
@@ -16,14 +20,18 @@
 <script>
 export default {
     name: "CatgoryList",
-    props: ['cate'],
+    props: ["cate"],
     data() {
-        return {
-
-        };
+        return {};
     },
-    components: {
-
+    components: {},
+    methods: {
+        detail(items) {
+            this.$router.push({
+                name: "detail",
+                query: { id: items.id },
+            });
+        },
     },
 };
 </script>
@@ -50,7 +58,7 @@ export default {
 
         p {
             margin-top: 5px;
-            color: #8B0000;
+            color: #8b0000;
         }
     }
 }

@@ -23,7 +23,7 @@ import router from '@/router'
 
 
 //引入vuex
-import store from '@/store'
+// import store from '@/store'
 
 
 //引入懒加载插件
@@ -44,15 +44,12 @@ Vue.filter('formatPrice', (value) => {
 })
 
 
-
-
-
 //取消开发模式提示
 Vue.config.productionTip = false
 
 
 new Vue({
-    store,
+    // store,
     router,
     render: h => h(App),
     components: {

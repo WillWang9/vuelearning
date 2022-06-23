@@ -45,13 +45,18 @@
                 </div>
             </div>
         </van-overlay>
+
+        <UserFunction></UserFunction>
+
     </div>
+
 </template>
 
 <script>
 import { postLogin } from "@/utils/http";
 import headImg from "@/assets/images/touxiang.png";
 import headImgS from "@/assets/images/w.jpg";
+import UserFunction from "@/components/UserFunction.vue";
 
 export default {
     name: "User",
@@ -109,7 +114,7 @@ export default {
                     .then(() => {
                         localStorage.removeItem("userinfo");
                         localStorage.removeItem("token");
-                        this.headImg = headImg
+                        this.headImg = headImg;
                         this.isLogin = false;
                     })
                     .catch(() => {
@@ -117,6 +122,9 @@ export default {
                     });
             }
         },
+    },
+    components: {
+        UserFunction,
     },
 };
 </script>

@@ -5,6 +5,7 @@
             v-model="value"
             placeholder="请输入搜索关键词"
             shape="round"
+            @click="$router.push({ name: 'searchpage' })"
         />
         <!-- 搜索框下方 主要内容 -->
         <div class="content">
@@ -14,23 +15,26 @@
                     v-for="item in dataArr"
                     :key="item.id"
                     :title="item.name"
-                    @click="onChange(item.id)"
+                    @click="onChange(item)"
                 />
             </van-sidebar>
 
             <!-- 内容区右侧内容区 -->
             <div class="right">
-                <div class="pic">
+                <div class="pic" @click="imgGoChannel">
                     <img v-lazy="currentData.banner_url" alt="" />
                     <h5>{{ currentData.front_desc }}</h5>
                 </div>
+
                 <van-divider>{{ currentData.name }}</van-divider>
+
                 <van-grid :column-num="3" :border="false">
                     <van-grid-item
                         v-for="item in currentData.subCategoryList"
                         :key="item.id"
                         :icon="item.wap_banner_url"
                         :text="item.name"
+                        @click="subGoChannel(item)"
                     />
                 </van-grid>
             </div>
@@ -49,15 +53,23 @@ export default {
             activeKey: 0,
             dataArr: [],
             currentData: "",
+            subCategoryList: [],
         };
     },
     created() {
         this.getData();
     },
     methods: {
-        onChange(id) {
-            // console.log(activeKey);
-            getCurrentCategoryData({ id: id })
+        imgGoChannel() {
+            this.$router.push({
+                name: "channel",
+                query: {
+                    id: this.currentData.id,
+                },
+            });
+        },
+        onChange(item) {
+            getCurrentCategoryData({ id: item.id })
                 .then((res) => {
                     this.currentData = res.data.data.currentCategory;
                     // console.log(res.data.data.currentCategory);
@@ -65,11 +77,22 @@ export default {
                 .catch();
         },
         getData() {
-            getCategoryData().then((res) => {
-                // console.log(res.data.data);
-                this.dataArr = res.data.data.categoryList;
-                this.currentData = res.data.data.currentCategory;
-            }).catch();
+            getCategoryData()
+                .then((res) => {
+                    // console.log(res.data.data);
+                    this.dataArr = res.data.data.categoryList;
+                    this.currentData = res.data.data.currentCategory;
+                })
+                .catch();
+        },
+        subGoChannel(item) {
+            // console.log(item.id);
+            this.$router.push({
+                name: "channel",
+                query: {
+                    id: item.id,
+                },
+            });
         },
     },
 };

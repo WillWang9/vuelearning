@@ -2,8 +2,8 @@
     <div>
         <h3 class="title">周一周四·新品首发</h3>
         <ul id="newgoods">
-            <li v-for="item in newgoods" :key="item.id">
-                <img :src="item.list_pic_url" alt="">
+            <li v-for="item in newgoods" :key="item.id" @click="detail(item)">
+                <img :src="item.list_pic_url" alt="" />
                 <div>{{ item.name }}</div>
                 <p>{{ item.retail_price | formatPrice }}</p>
             </li>
@@ -14,20 +14,24 @@
 <script>
 export default {
     name: "NewRelease",
-    props: ['newgoods'],
+    props: ["newgoods"],
     data() {
-        return {
-
-        };
+        return {};
     },
-    components: {
-
+    components: {},
+    methods: {
+        detail(item) {
+            this.$router.push({
+                name: "detail",
+                query: { id: item.id },
+            });
+        },
     },
 };
 </script>
 
 <style lang="less" scoped>
-#newgoods{
+#newgoods {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -35,17 +39,17 @@ export default {
     text-align: center;
     line-height: 24px;
     word-spacing: -4px;
-    li{
+    li {
         padding-bottom: 10px;
         margin-bottom: 10px;
         width: 49%;
         font-size: 16px;
-        img{
+        img {
             width: 100%;
         }
-        p{
+        p {
             margin-top: 5px;
-            color: #8B0000;
+            color: #8b0000;
         }
     }
 }

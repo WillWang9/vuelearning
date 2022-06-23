@@ -2,7 +2,12 @@
     <div class="recommend">
         <h3 class="title">人气推荐</h3>
 
-        <van-card v-for="item in hotgoods" :key="item.id" :thumb="item.list_pic_url">
+        <van-card
+            v-for="item in hotgoods"
+            :key="item.id"
+            :thumb="item.list_pic_url"
+            @click="detail(item)"
+        >
             <template #title>
                 <p>{{ item.name }}</p>
             </template>
@@ -13,22 +18,24 @@
                 <i>{{ item.retail_price | formatPrice }}</i>
             </template>
         </van-card>
-
-
     </div>
 </template>
 
 <script>
 export default {
     name: "Recommend",
-    props: ['hotgoods'],
+    props: ["hotgoods"],
     data() {
-        return {
-
-        };
+        return {};
     },
-    components: {
-
+    components: {},
+    methods: {
+        detail(item) {
+            this.$router.push({
+                name: "detail",
+                query: { id: item.id },
+            });
+        },
     },
 };
 </script>
@@ -49,7 +56,7 @@ span {
 }
 
 i {
-    color: #8B0000;
+    color: #8b0000;
 }
 
 .recommend {
