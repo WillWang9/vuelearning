@@ -92,7 +92,7 @@ export default {
                 page: 1,
                 size: 170,
             }).then((res) => {
-                // console.log(res);
+                console.log(res);
                 if (res.data.errno == 0) {
                     this.goodsList = res.data.data.goodsList;
                 }
